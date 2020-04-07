@@ -1,0 +1,96 @@
+#ifndef _SOUNDMETER_CONFIG
+  #define _SOUNDMETER_CONFIG
+
+  /*
+   * BOARDTYPE specifies which board we are compiling for
+   * because the wiring is slightly difference since PIN 13
+   * is on the opposite side.
+   * valid values UNO and NANO
+   */
+  #define UNO 1
+  #define NANO 2
+  #define BOARDTYPE UNO
+
+  /*
+   * The following values are used to configure the four-digit seven-segment LED display
+   */
+
+  /* digit width of the segment display */
+  #define DIGITS 4
+
+  /* what kind of display: COMMON_CATHODE or COMMON_ANODE */
+  #define CATHODE_OR_ANODE COMMON_CATHODE
+
+  #if BOARDTYPE == UNO
+    /* Data input PIN */
+    #define SHIFT_PIN_DS   13
+
+    /* Shift Register Storage PIN */
+    #define SHIFT_PIN_STCP 12
+
+    /* Shift Register Shift PIN */
+    #define SHIFT_PIN_SHCP 11
+
+    /*
+     * The following define the pins on the shift registers.
+     *  x < 8 == First Shift Register
+     *  8+x == Second Shift Register
+     */
+    #define DIGIT_PINS { 8+2, 8+5, 8+6, 2 }
+    #define SEGMENT_PINS { 8+3, 8+7, 4, 6, 7, 8+4, 3, 5 }
+
+  #elif BOARDTYPE == NANO
+    /* Data input PIN */
+    #define SHIFT_PIN_DS   12
+
+    /* Shift Register Storage PIN */
+    #define SHIFT_PIN_STCP 11
+
+    /* Shift Register Shift PIN */
+    #define SHIFT_PIN_SHCP 10
+
+    /*
+     * The following define the pins on the shift registers.
+     *  x < 8 == First Shift Register
+     *  8+x == Second Shift Register
+     */
+    #define DIGIT_PINS { 2, 5, 6, 8+2 }
+    #define SEGMENT_PINS { 3, 7, 8+4, 8+6, 8+7, 4, 8+3, 8+5 }
+
+  #else
+    #error Unknown BOARDTYPE definition.
+  #endif
+
+  /* 'false' means resistors are on digit pins */
+  #define RESISTORS_ON_SEGMENTS true
+
+  /* Default 'false' is Recommended */
+  #define UPDATE_DELAY false
+
+  /* Use 'true' if you'd like to keep the leading zeros */
+  #define LEADING_ZEROS false
+
+  /* Use 'true' if your decimal point doesn't exist or isn't connected. Then, you only need to specify 7 segmentPins[] */
+  #define NO_DEC_POINT false
+
+  /*
+   * RX and TX define which pins the ESP8266 will be communicated with
+   */
+  #define RX 5
+  #define TX 6
+
+  /*
+   * WiFi network connectivity
+   */
+  #define AP "WIFI_NAME"
+  #define PASS "WIFI_PASSWORD"
+
+  /*
+   * MQTT broker and client information
+   */
+  #define BROKER_HOST "192.168.0.0"
+  #define BROKER_PORT "1883"
+  #define CLIENT_ID "number goes here"
+  #define LIFE_TOPIC "/soundsensors/" + CLIENT_ID + "/state"
+  #define PUBLISH_TOPIC "/soundsensors/" + CLIENT_ID + "/reading"
+#endif

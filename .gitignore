@@ -1,0 +1,7 @@
+# Ignore local files
+.DS_Store
+**.DS_Store
+**.sw?
+
+# Don't check in credentials
+config.h
