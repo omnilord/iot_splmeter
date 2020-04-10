@@ -38,7 +38,7 @@ Total project cost: $114.90
 
 Learning how to work with electronics to create peace of mind: priceless
 
-1. The Arduino UNO R3 kit is a a great starting place to pick up electronics since it comes with a bunch of the essentials for prototyping various circuits.  First, it comes with the all-important Arduino Microcontroller (MCP) board that is the the centerpiece.  This beautiful palm-sized device is the hub upon which all circuits spin.  You upload your programs to this device, you plug in your components to this device, it's everything.  Second, if the Arduino is the hub, then the breadboard is the wheel.  The breadboard is how everything beyond super basic components gets wired together (as we'll see with the LED display later).
+1. The Arduino UNO R3 kit is a a great starting place to pick up electronics since it comes with a bunch of the essentials for prototyping various circuits.  First, it comes with the all-important Arduino Microcontroller (MCP) board that is the centerpiece.  This beautiful palm-sized device is the hub upon which all circuits spin.  You upload your programs to this device, you plug in your components to this device, it's everything.  Second, if the Arduino is the hub, then the breadboard is the wheel.  The breadboard is how everything beyond super basic components gets wired together (as we'll see with the LED display later).
 
 2. The Piezoelectric vibration sensor is the fundamental peripheral for a home made SPL meter as it is the workhorse that will be capture the vibrations we intend to measure.  These super light-weight, seemingly flimsy pieces of metal-bonded-to-ceramic are absolutely amazing when you dig into the physics behind what makes them work.  The long story short is they convert changes in pressure into voltage; sometimes significantly high levels of voltage, up to 50V(!!!), so mind that you use resistors properly to protect your 10 fold less--only 5V for the Arduino UNO--circuits).
 
@@ -50,7 +50,7 @@ Learning how to work with electronics to create peace of mind: priceless
 
 6. An ESP8266 will allow us to connect to a Wireless network and transmit the readings over MQTT for long-term logging and data analysis.
 
-7. These adapters will allow us to easily connect the ESP8266 to the circuit without having to worry about all the extra dumont cables that will eventually come loose.
+7. The ESP8266 SP-01 adapters will allow us to easily connect the ESP8266 to the circuit without having to worry about all the extra dumont cables that will eventually come loose.
 
 8. Breadboard jumpers will come in handy for the final build.  You will see in my prototype that I formed 14 gauge steel wire by hand to craft jumpers.  These bespoke jumpers worked really well, but they were almost too large for the breadboard connection points and I am worried that I may have damaged the plastic with them.
 
@@ -62,7 +62,7 @@ Learning how to work with electronics to create peace of mind: priceless
 
 <Talk about how breadboards work, how to assemble the specific components and test there fir this project...>
 
-## Part 2: Writing the On-Board Software ==
+## Part 2: Writing the On-Board Software
 ### Basic Arduino Build
 <Quick overview of Arduino IDE basics>
 
@@ -92,3 +92,14 @@ I'm not normally a python guy.  As a matter of fact, I loath the syntax of the l
 
 
 ## Lessons Learned
+
+### Wiring Puzzles
+<discuss the optimal usage of space on the breadboard>
+
+### Wifi IoT / Security Concerns
+<title is self-descriptive>
+
+### The Whoops Factor: NodeMCU, ESP32
+So, about halfway through this project *after having purchased all the components in Part 1* I discovered there were alternate devices with a WiFi module and LCD integrated into the board.  These ESP32 devices are programmed much the same way you would program an Arduino with an ATMega MCP, but no need to breadboard all the extra stuff.  The first hurdle that justified my continuing to use the Arduinos instead of switch to these more powerful devices was the need for a 5V circuit on the piezoelectric disks.
+
+I eventually stumbled on the NodeMCU style products, and kind had me salty because there are versions that support 5V.  In production runs in the future, these powerful and ecconomic devices will probably be my goto component, if not ESP32s, or whatever their successors may be.
